@@ -1,0 +1,29 @@
+apiVersion: 2018-10-01
+location: eastus
+name: myContainerGroup
+properties:
+  containers:
+  - name: micro-Neo
+    properties:
+      environmentVariables:
+        - name: 'NEO4J_AUTH'
+          value: 'neo4j/test'
+      image: neo4j
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports: 
+      - port: 7474
+      - port: 7687 
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: '7474'
+    - protocol: tcp
+      port: '7687'
+  restartPolicy: Always
+tags: null
+type: Microsoft.ContainerInstance/containerGroups
